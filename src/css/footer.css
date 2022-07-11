@@ -1,0 +1,17 @@
+footer{
+    background-color: #4b71aa;
+    color: #DBE2EF;
+}
+/* .line{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 1px;
+    background-color: #4b71aa;
+} */
+footer a {
+    font-size: 1.5rem;
+    color: #DBE2EF;
+}
+footer a:hover {
+    color: #DBE2EF;
+}
