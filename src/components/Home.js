@@ -14,8 +14,9 @@ const Home = () => {
     const [movies,setMovies] = useState([]);
     const [page,setPage] = useState(1);
     const [totalPages,setTotalPages] = useState(1);
-    const [categoryPage , setCategoryPage] = useState(1);
+    // const [categoryPage , setCategoryPage] = useState(1);
     const [isLoading , setIsLoading] = useState(true);
+    const [isCategory , setIsCategory] = useState(false);
     // const [auth , setAuth] = useState("");
 
      const auth = useSelector((state)=>{
@@ -24,12 +25,12 @@ const Home = () => {
  
    
     useEffect(()=>{
-      console.log("home");
-      console.log(page)
-        axios.get(`${api_url}&page=${page}`).then((res)=>{
+      window.scrollTo(0,0);
+      !isCategory &&  axios.get(`${api_url}&page=${page}`).then((res)=>{
           //  console.log(res.data,"data from home")
           setMovies(res.data.results)
           setIsLoading(false)
+          setIsCategory(false);
         }).catch((err)=>{
             console.log(err);
             alert("something went wrong")
@@ -40,7 +41,7 @@ const Home = () => {
   return (
     <div className='page-min-height'>
    <MovieContext.Provider value={{movies:movies,setMovies:setMovies}}>
-       <SwiperCategories  categoryPage={categoryPage} setCategoryPage={setCategoryPage}/>
+       <SwiperCategories page={page} setPage={setPage} isCategory={isCategory} setIsCategory={setIsCategory}/>
      
     </MovieContext.Provider>
     {isLoading?<div className="d-flex justify-content-center">
@@ -50,7 +51,7 @@ const Home = () => {
 </div>:
        <>
     <Card name="Discover" movies={movies}/>
-    <PaginationMui page={page} setPage={setPage} categoryPage={categoryPage} setCategoryPage={setCategoryPage}/>
+    <PaginationMui page={page} setPage={setPage} />
     {/* <PaginationSeparate page = {page} setPage={setPage}/> */}
        </>
   }

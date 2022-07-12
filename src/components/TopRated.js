@@ -9,6 +9,7 @@ const TopRated = () => {
     const [isLoading , setIsLoading] = useState(true);
 
     useEffect(()=>{
+      window.scrollTo(0,0)
         axios.get(`${config.base_url}/movie/top_rated?${config.api_key}&page=${topRatedPage}`)
         .then((res)=>{
             setTopRatedMovies(res.data.results);

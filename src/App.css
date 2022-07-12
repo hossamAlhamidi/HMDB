@@ -221,7 +221,9 @@ a {
   .page-min-height{
     min-height: calc(100vh - 124px);
   }
-
+  .active-category {
+    background-color: #3F72AF !important;
+  }
   @media screen and (max-width:500px) {
     button.MuiPaginationItem-root {
       font-size: 1rem;

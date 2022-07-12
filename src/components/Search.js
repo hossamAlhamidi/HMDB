@@ -3,23 +3,27 @@ import '../css/search.css'
 import axios from 'axios';
 import * as config from '../components/config/apiConfig'
 import Card from './layout/Card';
+import PaginationSeparate from './layout/PaginationSeparate';
 const Search = () => {
   const [search,setSearch] = useState("");
   const [movie,setMovie] = useState([]);
-
+  const [page,setPage] = useState(1);
+  const [totalPages , setTotalPages] = useState(1);
   const handleSearchChange = (input)=>{
     setSearch(input)
   }
   useEffect(()=>{
     if(search)
-    axios.get(config.base_url+`/search/movie?${config.api_key}&query=${search}`).then((res)=>{
-      console.log(res.data,"search");
+    axios.get(config.base_url+`/search/movie?${config.api_key}&query=${search}&page=${page}`).then((res)=>{
+      // console.log(res.data,"search");
       setMovie(res.data.results)
+      setTotalPages(res.data.total_pages)
     })
     .catch((err)=>{
       console.log(err)
+      alert("something went wrong")
     })
-  },[search])
+  },[search,page])
   return (
     <div className='container pt-5 page-min-height'>
         <div className='row'>
@@ -39,7 +43,12 @@ const Search = () => {
               
         </div>
 
-       { search && <Card movies={movie} name=""/>}
+       { search && <>
+        <Card movies={movie} name=""/>
+        <PaginationSeparate page = {page} setPage={setPage} totalPages={totalPages} />
+       
+       </>
+       }
 
     </div>
   )

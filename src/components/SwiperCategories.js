@@ -1,10 +1,11 @@
-import React , {useState , useEffect} from 'react'
+import React , {useState , useEffect, useRef} from 'react'
 import axios from 'axios';
 import { useContext } from 'react';
 import { MovieContext } from './Home';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import {Swiper , SwiperSlide } from 'swiper/react';
 import { api_url , base_url , api_key } from './config/apiConfig';
+import '../App.css'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -18,7 +19,7 @@ import Comedy from '../assets/icons/comedy.png'
 import War from '../assets/icons/war.png'
 import Horror from '../assets/icons/horror.png'
 import Mystery from '../assets/icons/crime1.png'
-const SwiperCategories = ({categoryPage,setCategoryPage}) => {
+const SwiperCategories = ({page,setPage,categoryPage,setCategoryPage ,isCategory , setIsCategory}) => {
  const icons = {
     Action:Action,
     Romance:Romance,
@@ -30,49 +31,84 @@ const SwiperCategories = ({categoryPage,setCategoryPage}) => {
     Horror:Horror,
     Mystery:Mystery
  }
+   
     const movieContext = useContext(MovieContext);
     const {movies , setMovies} = movieContext;
     const [categories , setCategories] = useState([]);
     // const [categoryPage , setCategoryPage] = useState(1);
     const [genreId,setGenreId] = useState(1);
+    const active = useRef("");
+    // const preActive = useRef("");
+
+
     useEffect(()=>{
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?${api_key}&language=en-US`)
         .then((res)=>{
        
             setCategories(res.data.genres)
-             setCategoryPage(1);
-            
+            //  setCategoryPage(1);
+             setPage(1);
         }).catch((err)=>{
             console.log(err)
         })
-    },[genreId])
+    },[])
 
        useEffect(()=>{
-        movieByCategory(genreId);
-       },[categoryPage])
+        setPage(1);
+      
+       },[genreId])
+       
+       useEffect(()=>{
+        
+       isCategory && movieByCategory(genreId);
+     
+       },[page])
 
-    const movieByCategory = (id)=>{
+    const movieByCategory = (id,event)=>{
         setGenreId(id);
+        setIsCategory(true);  
+        
+         activeSwiper(event)
+          
         // console.log(categoryPage,'catergoryPage');
-        //  setPage(1);
+        //   setPage(1);
         // console.log(page,"page")
-        axios.get(`${base_url}/discover/movie?${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${categoryPage}&with_genres=${id}`).then((res)=>{
+        axios.get(`${base_url}/discover/movie?${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}&with_genres=${id}`).then((res)=>{
            setMovies(res.data.results)
            
         }).catch((err)=>{
             console.log(err)
         })
     }
+
+    const activeSwiper = (event)=>{
+        const category_cards = document.querySelectorAll(".card.card-bg");
+        for(let e of category_cards){
+            
+            e.classList.remove("active-category")
+        }
+       
+     if(event){
+        //   event.currentTarget.classList.add("active-category")
+          active.current = event.currentTarget
+     }
+    //  console.log(active.current,"active")
+        active.current.classList.add("active-category")
+
+    //  if(preActive.current){
+    //     console.log("yes");
+        // preActive.current.classList.remove("active-category")
+        // console.log(active.current,"active")
+        // active.current.classList.add("active-category")
+    // }
+    }
   return (
     <div className='container-md px-md-5 py-5 my-5'>
 
         <Swiper 
          modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={20} 
-        
+        spaceBetween={20}   
         navigation
-        
-      
         grabCursor={true}
         breakpoints={{320:{
             width:320,
@@ -85,22 +121,7 @@ const SwiperCategories = ({categoryPage,setCategoryPage}) => {
     
     }}
         >
-                        {/* <Swiper
-                breakpoints={{
-                    // when window width is >= 640px
-                    320: {
-                    width: 320,
-                    slidesPerView: 3,
-                    spaceBetween:20
-                    },
-                    // when window width is >= 768px
-                    768: {
-                    width: 768,
-                    slidesPerView: 6,
-                    spaceBetween:20
-                    },
-                }}
-                > */}
+             
                
 
         {categories.map((e,i)=>{
@@ -112,7 +133,8 @@ const SwiperCategories = ({categoryPage,setCategoryPage}) => {
             else {
             return (
                 <SwiperSlide  id={e.id}key={e.id}>
-                 <div className='card card-bg' style={{cursor:"pointer"}} onClick={()=>movieByCategory(e.id)}  >
+        
+                 <div className='card card-bg'  style={{cursor:"pointer"}} onClick={(event)=>movieByCategory(e.id,event)}  >
                 <div className='card-body  mx-auto text-center'>
                 <div><img src={icons[e.name]} style={{width:"60px",height:"60px"}}/></div>
                 <h5 className='mt-3 category-name'>{e.name}</h5>
@@ -125,7 +147,6 @@ const SwiperCategories = ({categoryPage,setCategoryPage}) => {
         })}
     
         
-
       
 
         </Swiper>

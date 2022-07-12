@@ -22,6 +22,7 @@ const MovieDetails = () => {
       })
 
     useEffect(()=>{
+       window.scrollTo(0,0)
         axios.get(`${config.base_url}/movie/${movieId}?${config.api_key}&language=en-US`)
         .then((res)=>{
             // console.log(res.data,"det")

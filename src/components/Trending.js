@@ -10,7 +10,7 @@ const Trending = () => {
   const [isLoading , setIsLoading] = useState(true);
   
   useEffect(()=>{
-    console.log("trending");
+    window.scrollTo(0,0)
     axios.get(`${config.base_url}/trending/movie/week?${config.api_key}&page=${trendingPage}`).
     then((res)=>{
       // console.log(res.data.results,"trending")

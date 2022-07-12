@@ -2,7 +2,7 @@ import React from 'react'
 import '../../css/footer.css'
 const Footer = () => {
   return (
-    <footer>
+    <footer className='mt-4'>
         {/* <div className='line'></div> */}
         <div className='d-flex justify-content-center'>
             <div>
