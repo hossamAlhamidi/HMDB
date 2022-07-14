@@ -1,10 +1,10 @@
 # React Movies website 
 
-# #Technology used:
+## Technology used:
 Frond-End : React hooks , redux 
 Back-End : php , MariaDB 
 
-####Website link : 
+#### Website link : 
 https://hosmdb.herokuapp.com/
 
 
