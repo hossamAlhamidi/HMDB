@@ -1,6 +1,6 @@
 # React Movies website 
 
-##Technology used:
+# #Technology used:
 Frond-End : React hooks , redux 
 Back-End : php , MariaDB 
 
