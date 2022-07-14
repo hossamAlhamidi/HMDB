@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
+import * as config from './config/apiConfig'
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import {useSelector , useDispatch} from 'react-redux';
@@ -34,7 +35,7 @@ const Signin = () => {
       } = useForm( { resolver: yupResolver(schema)});
 
       const onSubmit = (data) => {
-        const url = 'http://localhost/hosmdb/getUser.php'
+        const url = `${config.url}/getUser.php`
         console.log(data,"data");
 
         axios.post(url,data).then((res)=>{
@@ -50,7 +51,7 @@ const Signin = () => {
                  window.localStorage.setItem("email",res.data.email);
               dispatch({type:"LOGIN",payload:res.data.email});
               navigate("/")
-              window.location.reload()
+              // window.location.reload()
             // setName(res.data.name);
            
             }

@@ -13,7 +13,7 @@ const MovieDetails = () => {
     const [videos,setVideos] = useState([]);
     const [watchlistExist , setWatchlistExist] = useState(false);
     const [copyText , setCopyText] = useState("")
-    const websiteURL = "http://localhost:3000/movie/"
+    const websiteURL = `${config.url}/movie/`
     let trailer = "";
     let {movieId} = useParams();
     const base_img = "https://image.tmdb.org/t/p/w500/"
@@ -41,7 +41,7 @@ const MovieDetails = () => {
             console.log(err)
         })
 
-        const url = 'http://localhost/hosmdb/isWatchlist.php'
+        const url = `${config.url}/isWatchlist.php`
         const obj = {
             id:movieId,
             email:auth.email
@@ -64,7 +64,7 @@ const MovieDetails = () => {
 
 
     const handleWatchlist = ()=>{
-        const url = 'http://localhost/hosmdb/insertWatchlist.php'
+        const url = `${config.url}/insertWatchlist.php`
         const obj = {
             email:auth.email,
             movie:movieDetails}

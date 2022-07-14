@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import WatchlistCard from './layout/WatchlistCard';
+import * as config from './config/apiConfig'
 const Watchlist = () => {
     const auth = useSelector((state)=>{
         return({auth:state.auth,email:state.email})
@@ -11,13 +12,13 @@ const Watchlist = () => {
       const [isLoading , setIsLoading] = useState(true);
 
       useEffect(()=>{
-        const url = 'http://localhost/hosmdb/getWatchlist.php'
+        const url = `${config.url}/getWatchlist.php`
         const obj = {
             email:auth.email
           }
             
       auth.auth &&  axios.post(url,obj).then((res)=>{
-            console.log(res.data,"watchlsit");
+            // console.log(res.data,"watchlsit");
             setIsLoading(false);
             if(res.data=="no"){
                 console.log("empty");
@@ -33,7 +34,7 @@ const Watchlist = () => {
         })
       },[])
 
-      console.log(isLoading,"isloading")
+      // console.log(isLoading,"isloading")
   return (
     <div className='page-min-height'>
       

@@ -83,7 +83,7 @@ const Sidebar = () => {
 
                 <div className="nav_list"> 
                 <Link to="/"  className="nav_link  "> 
-                <i className='bx bx-home nav-icon'></i>
+                <i className='bx bx-home nav_icon'></i>
                  <span className="nav_name">Home</span> 
                  </Link> 
                  

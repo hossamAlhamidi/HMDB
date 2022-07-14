@@ -61,7 +61,7 @@ a {
 }
 .header_toggle {
   color: var(--first-color);
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 .header_img {
@@ -220,6 +220,9 @@ a {
   }
   .page-min-height{
     min-height: calc(100vh - 124px);
+  }
+  .swiper .swiper-button-prev ,.swiper .swiper-button-next{
+    color:white
   }
   .active-category {
     background-color: #3F72AF !important;

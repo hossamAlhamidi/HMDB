@@ -14,6 +14,7 @@ import Signup from './components/Signup';
 import Watchlist from './components/Watchlist';
 import Hossamiyat from './components/Hossamiyat';
 import Footer from './components/layout/Footer';
+import NotFound from './components/NotFound';
 function App() {
   const auth = useSelector((state)=>{
     return({auth:state.auth,email:state.email})
@@ -42,7 +43,9 @@ function App() {
       // </>
       }
       <Route path='/watchlist' element={<Watchlist/>}/>
+      <Route path='/*' element={<NotFound />} />
     </Routes>
+
     <Footer/>
       </Router>
     </div>

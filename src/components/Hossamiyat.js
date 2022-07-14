@@ -26,6 +26,12 @@ const Hossamiyat = () => {
       vote_average:8.2,
       title:"Inglourious Basterds",
       poster_path:"7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg"
+    },
+    {
+      id:98,
+      vote_average:8.2,
+      title:"Gladiator",
+      poster_path:"ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg"
     }
 ]
   return (

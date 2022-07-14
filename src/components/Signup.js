@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import {  useNavigate ,Navigate } from 'react-router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import * as config from './config/apiConfig'
 import axios from 'axios';
 
 const schema = yup
@@ -34,7 +35,7 @@ const Signup = () => {
     const onSubmit = (data) => { 
        
         // console.log(data,"data")
-        const url = 'http://localhost/hosmdb/insertUser.php'
+        const url = `${config.url}/insertUser.php`
         axios.post(url,data).then((res)=>{
             if(res.data == "yes"){
             navigate("/signin", { replace: true });
