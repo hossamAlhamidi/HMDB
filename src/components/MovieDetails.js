@@ -131,7 +131,7 @@ const MovieDetails = () => {
     </div>
     <div className="movie_social my-3 ">
       <ul className='mt-2 social d-flex align-items-center'>
-        <li><span className='me-1' style={{color:"orange",fontWeight:"bold"}}>{movieDetails.vote_average}</span><i style={{color:"orange"}}className="fa fa-solid fa-star"></i></li>
+        <li><span className='me-1' style={{color:"orange",fontWeight:"bold"}}>{movieDetails.vote_average.toFixed(1)}</span><i style={{color:"orange"}}className="fa fa-solid fa-star"></i></li>
         <li>
           <button className='btn border-0' onClick={copyToClipboard} >
           {

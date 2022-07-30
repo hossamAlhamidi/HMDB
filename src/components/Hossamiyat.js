@@ -3,11 +3,23 @@ import Card from './layout/Card'
 const Hossamiyat = () => {
     const movies = 
     [
+     {
+       id:361743,
+      vote_average:8.3,
+      title:"Top Gun: Maverick",
+      poster_path:"62HCnUTziyWcpDaBO2i1DX17ljH.jpg"
+    },
     {
         id:324786,
         vote_average:8.2,
         title:"Hacksaw Ridge",
         poster_path:"fTuxNlgEm04PPFkr1xfK94Jn8BW.jpg"
+    },
+    {
+      id:115,
+      vote_average:8.5,
+      title:"The Dark Knight",
+      poster_path:"qJ2tW6WMUDux911r6m7haRef0WH.jpg"
     },
     {
       id:1124,
