@@ -2,9 +2,8 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import '../../App.css'
 import { Pagination, withTheme } from '@mui/material';
-import { makeStyles } from '@material-ui/core';
 import Stack from '@mui/material/Stack';
-import { fontSize } from '@mui/system';
+
 const PaginationSeparate = ({page,setPage,totalPages}) => {
 
     const handlePageChange = (page)=>{

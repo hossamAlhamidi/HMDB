@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { useEffect  } from 'react';
 import '../../App.css'
-import { Pagination, withTheme } from '@mui/material';
-import { makeStyles } from '@material-ui/core';
+import { Pagination } from '@mui/material';
+
 import Stack from '@mui/material/Stack';
-import { fontSize } from '@mui/system';
-import useEvent from 'react-use-event-hook';
+
 
 const PaginationMui = ({page,setPage }) => {
 
